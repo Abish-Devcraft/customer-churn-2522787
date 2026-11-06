@@ -69,5 +69,57 @@ plt.savefig(results_folder / "03_monthly_charges_by_churn.png")
 plt.show()
 
 
+
+# GRAPH 4: Customer tenure by churn
+plt.figure(figsize=(8, 5))
+
+sns.boxplot(data=df, x="Churn", y="tenure")
+
+plt.title("Customer Tenure by Churn Status")
+plt.xlabel("Customer Churn")
+plt.ylabel("Tenure (Months)")
+
+plt.tight_layout()
+plt.savefig(results_folder / "04_churn_by_tenure.png", dpi=300)
+plt.show()
+
+
+# GRAPH 5: Churn by internet service
+plt.figure(figsize=(9, 5))
+
+sns.countplot(data=df, x="InternetService", hue="Churn")
+
+plt.title("Customer Churn by Internet Service")
+plt.xlabel("Internet Service")
+plt.ylabel("Number of Customers")
+
+plt.tight_layout()
+plt.savefig(results_folder / "05_churn_by_internet_service.png", dpi=300)
+plt.show()
+
+
+# GRAPH 6: Correlation heatmap
+numeric_df = df[
+    ["SeniorCitizen", "tenure", "MonthlyCharges", "TotalCharges"]
+].dropna()
+
+plt.figure(figsize=(8, 6))
+
+sns.heatmap(
+    numeric_df.corr(),
+    annot=True,
+    cmap="coolwarm",
+    fmt=".2f"
+)
+
+plt.title("Correlation Heatmap of Numerical Features")
+
+plt.tight_layout()
+plt.savefig(results_folder / "06_correlation_heatmap.png", dpi=300)
+plt.show()
+
+print("All six EDA visualisations completed!")
+
+
 print("EDA visualisations completed successfully!")
 print("Graphs saved in:", results_folder)
