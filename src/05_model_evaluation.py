@@ -51,6 +51,16 @@ for model_name, filename in model_files.items():
     # Confusion matrix
     cm = confusion_matrix(y_test, y_pred)
 
+    print(f"\n{model_name} Confusion Matrix:")
+    print(cm)
+
+    tn, fp, fn, tp = cm.ravel()
+
+    print("True Negatives:", tn)
+    print("False Positives:", fp)
+    print("False Negatives:", fn)
+    print("True Positives:", tp)
+
     plt.figure(figsize=(6, 5))
 
     display = ConfusionMatrixDisplay(
